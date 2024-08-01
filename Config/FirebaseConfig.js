@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { getAnalytics, isSupported } from "firebase/analytics";
 import { getStorage } from "firebase/storage";
 import { getFirestore, collection } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -16,6 +16,16 @@ const firebaseConfig = {
   appId: "1:144311001597:web:8810f4b1d216b0bc97f994",
   measurementId: "G-QTNHEL32EJ"
 };
+isSupported().then((supported) => {
+  if (supported) {
+    const analytics = getAnalytics(app);
+    // Additional analytics configuration or logging can go here
+  } else {
+    console.log("Firebase Analytics is not supported in this environment.");
+  }
+}).catch((error) => {
+  console.error("Error checking Firebase Analytics support:", error);
+});
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
