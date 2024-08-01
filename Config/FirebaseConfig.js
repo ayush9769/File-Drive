@@ -29,7 +29,7 @@ isSupported().then((supported) => {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+export const analytics = getAnalytics(app);
 export const firestore = getFirestore(app);
 export const usersCollectionRef = collection(firestore, 'users');
 export const storage = getStorage(app);
